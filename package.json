@@ -1,12 +1,17 @@
 {
   "name": "react-native-ui-action-sheet",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "cross platform Action sheet for react native ",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Ali Alkorsani",
+  "license": "MIT",
+  "homepage": "https://github.com/alialkorsani/react-native-ui-action-sheet",
+  "bugs": {
+    "url": "https://github.com/alialkorsani/react-native-ui-action-sheet/issues"
+  },
   "keywords": [
     "react-native",
     "react native options component",
@@ -18,7 +23,6 @@
     "android",
     "ui"
   ],
-  "license": "ISC",
   "devDependencies": {
     "metro-react-native-babel-preset": "^0.62.0"
   },
