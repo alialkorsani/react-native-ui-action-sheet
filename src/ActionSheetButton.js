@@ -8,7 +8,7 @@ import {
   Text,
 } from 'react-native';
 import {darkColors, lightColors} from './Colors';
-const Wrapper = ({
+const ActionSheetButton = ({
   onPress,
   dark,
   onPressColor,
@@ -54,17 +54,9 @@ const Wrapper = ({
       onPress={onPress}
       underlayColor={onPressColor ? onPressColor : theme.secondarySystemFill}>
       <View>
-        <Text
-          style={[
-            styles.actionSheetButtonText,
-            {
-              color: textColor ? textColor : theme.label,
-            },
-          ]}>
-          {title}
-        </Text>
+        <Text style={styles.actionSheetButtonText}>{title}</Text>
       </View>
     </TouchableHighlight>
   );
 };
-export default Wrapper;
+export default ActionSheetButton;

@@ -136,6 +136,7 @@ const ActionSheet = (
             data={options}
             renderItem={({ item }) => (
               <ActionSheetButton
+                dark={dark}
                 direction={direction}
                 textColor={textColor}
                 title={item.title}
