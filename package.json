@@ -1,0 +1,28 @@
+{
+  "name": "react-native-ui-action-sheet",
+  "version": "1.0.0",
+  "description": "cross platform Action sheet for react native ",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Ali Alkorsani",
+  "keywords": [
+    "react-native",
+    "react native options component",
+    "react native action sheet",
+    "react native component",
+    "react native",
+    "mobile",
+    "ios",
+    "android",
+    "ui"
+  ],
+  "license": "ISC",
+  "devDependencies": {
+    "metro-react-native-babel-preset": "^0.62.0"
+  },
+  "dependencies": {
+    "react-native-modal": "^11.5.6"
+  }
+}
