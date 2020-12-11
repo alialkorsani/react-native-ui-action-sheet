@@ -15,6 +15,7 @@ const ActionSheetButton = ({
   title,
   textColor,
   direction,
+  mode,
 }) => {
   const theme = dark ? darkColors : lightColors;
 
@@ -23,7 +24,7 @@ const ActionSheetButton = ({
       height: 55,
       justifyContent: 'center',
       alignItems:
-        Platform.OS === 'ios'
+        Platform.OS === 'ios' || mode === 'ios'
           ? 'center'
           : direction === 'right'
           ? 'flex-end'
@@ -37,7 +38,7 @@ const ActionSheetButton = ({
     },
   });
 
-  return Platform.OS === 'android' ? (
+  return Platform.OS === 'android' && mode !== 'ios' ? (
     <TouchableNativeFeedback
       background={TouchableNativeFeedback.Ripple(
         onPressColor ? onPressColor : theme.secondarySystemFill,

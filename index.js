@@ -1,4 +1,4 @@
-import React, { forwardRef, useImperativeHandle, useState } from "react";
+import React, {forwardRef, useImperativeHandle, useState} from 'react';
 import {
   Text,
   StyleSheet,
@@ -7,12 +7,12 @@ import {
   TouchableWithoutFeedback,
   Platform,
   SafeAreaView,
-} from "react-native";
-import { darkColors, lightColors } from "./src/Colors";
+} from 'react-native';
+import {darkColors, lightColors} from './src/Colors';
 
-import Modal from "react-native-modal";
-import ActionSheetButton from "./src/ActionSheetButton";
-import Wrapper from "./src/Wrapper";
+import Modal from 'react-native-modal';
+import ActionSheetButton from './src/ActionSheetButton';
+import Wrapper from './src/Wrapper';
 const ActionSheet = (
   {
     options,
@@ -26,32 +26,37 @@ const ActionSheet = (
     titleColor,
     onPressColor,
     dark,
+    mode,
   },
-  ref
+  ref,
 ) => {
   const theme = dark ? darkColors : lightColors;
   const styles = StyleSheet.create({
     container: {
       flex: 1,
     },
-    modal: { margin: Platform.OS === "ios" ? 10 : 0 },
+    modal: {margin: Platform.OS === 'ios' || mode === 'ios' ? 10 : 0},
 
-    headerIOS: { padding: 10, width: "100%", alignItems: "center" },
+    headerIOS: {padding: 10, width: '100%', alignItems: 'center'},
     headerAndroid: {
       padding: 10,
-      flexDirection: direction === "right" ? "row-reverse" : "row",
-      width: "100%",
+      flexDirection: direction === 'right' ? 'row-reverse' : 'row',
+      width: '100%',
     },
-    headerTitle: { fontSize: 16 },
-    flatList: { width: "100%" },
+    headerTitle: {fontSize: 16},
+    flatList: {width: '100%'},
 
     itemSeparatorComponent: {
       height: 0.5,
     },
-    cancelInner: { borderRadius: Platform.OS === "ios" ? 15 : 0 },
-    cancelTouchable: { borderRadius: Platform.OS === "ios" ? 15 : 0 },
-    backdrop: { flex: 1 },
-    iosWrapperMargin: { marginTop: 10 },
+    cancelInner: {
+      borderRadius: Platform.OS === 'ios' || mode === 'ios' ? 15 : 0,
+    },
+    cancelTouchable: {
+      borderRadius: Platform.OS === 'ios' || mode === 'ios' ? 15 : 0,
+    },
+    backdrop: {flex: 1},
+    iosWrapperMargin: {marginTop: 10},
   });
 
   useImperativeHandle(ref, () => ({
@@ -77,27 +82,24 @@ const ActionSheet = (
       onSwipeComplete={close}
       style={styles.modal}
       swipeDirection="down"
-      isVisible={visiable}
-    >
+      isVisible={visiable}>
       <>
         <TouchableWithoutFeedback pointerEvents="none" onPress={close}>
           <View style={styles.backdrop} />
         </TouchableWithoutFeedback>
 
-        <Wrapper dark={dark} backgroundColor={backgroundColor}>
+        <Wrapper mode={mode} dark={dark} backgroundColor={backgroundColor}>
           {title ? (
-            Platform.OS === "ios" ? (
+            Platform.OS === 'ios' || mode === 'ios' ? (
               <View
                 style={{
                   ...styles.headerIOS,
-                }}
-              >
+                }}>
                 <Text
                   style={{
                     ...styles.headerTitle,
                     color: titleColor ? titleColor : theme.secondaryLabel,
-                  }}
-                >
+                  }}>
                   {title}
                 </Text>
               </View>
@@ -105,14 +107,12 @@ const ActionSheet = (
               <View
                 style={{
                   ...styles.headerAndroid,
-                }}
-              >
+                }}>
                 <Text
                   style={{
                     ...styles.headerTitle,
                     color: titleColor ? titleColor : theme.secondaryLabel,
-                  }}
-                >
+                  }}>
                   {title}
                 </Text>
               </View>
@@ -121,7 +121,7 @@ const ActionSheet = (
           <FlatList
             showsVerticalScrollIndicator={false}
             ItemSeparatorComponent={() =>
-              Platform.OS === "ios" ? (
+              Platform.OS === 'ios' || mode === 'ios' ? (
                 <View
                   style={{
                     ...styles.itemSeparatorComponent,
@@ -134,8 +134,9 @@ const ActionSheet = (
             }
             style={styles.flatList}
             data={options}
-            renderItem={({ item }) => (
+            renderItem={({item}) => (
               <ActionSheetButton
+                mode={mode}
                 dark={dark}
                 direction={direction}
                 textColor={textColor}
@@ -147,7 +148,7 @@ const ActionSheet = (
             keyExtractor={(item, i) => i.toString()}
           />
         </Wrapper>
-        {Platform.OS === "android" ? (
+        {Platform.OS === 'android' && mode !== 'ios' ? (
           <View
             style={{
               ...styles.itemSeparatorComponent,
@@ -160,8 +161,9 @@ const ActionSheet = (
           <View style={styles.iosWrapperMargin} />
         )}
         {cancelTitle ? (
-          <Wrapper dark={dark} backgroundColor={backgroundColor}>
+          <Wrapper mode={mode} dark={dark} backgroundColor={backgroundColor}>
             <ActionSheetButton
+              mode={mode}
               direction={direction}
               title={cancelTitle}
               onPressColor={onPressColor}
