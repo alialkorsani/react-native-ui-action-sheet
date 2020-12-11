@@ -84,3 +84,4 @@ const styles = StyleSheet.create({
 | direction (optional **Android Only**) | set the layout direction to **left** or **right**                        |
 | onPressColor (optional)               | customize the button underlayColor and ripple color                      |
 | dark (optional)                       | set action sheet to dark mode                                            |
+| mode (optional)                       | show ios style on android                                                |
